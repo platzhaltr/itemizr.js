@@ -1,0 +1,32 @@
+{
+    "name": "datr",
+    "version": "0.0.1",
+    "description": "itemizr.js is a javascript date library for parsing purchases",
+    "homepage": "https://github.com/platzhaltr/itemizr",
+    "author": "Oliver Schrenk <oliver.schrenk@gmail.com>",
+    "keywords": [
+        "purchase", "finance", "spending"
+    ],
+    "main": "./itemizr.js",
+    "engines": {
+        "node": "*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/platzhaltr/itemizr.git"
+    },
+    "bugs": {
+        "url": "https://github.com/platzhaltr/itemizr/issues"
+    },
+    "licenses": [
+        {
+            "type": "MIT"
+        }
+    ],
+    "devDependencies": {
+        "jshint": "latest",
+        "uglify-js": "latest",
+        "nodeunit": "latest",
+		"pegjs": "latest"
+    }
+}
