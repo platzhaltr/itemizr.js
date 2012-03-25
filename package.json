@@ -1,6 +1,6 @@
 {
     "name": "itemizr.js",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "itemizr.js is a javascript library to parse line items on receipts in a natural way",
     "homepage": "https://github.com/platzhaltr/itemizr.js",
     "author": "Oliver Schrenk <oliver.schrenk@gmail.com>",
