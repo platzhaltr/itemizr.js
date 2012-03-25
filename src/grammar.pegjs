@@ -25,17 +25,41 @@ quantizedItem
   = quantity:quantity SPACE item:item 	{return merge (quantity, item);}
 
 quantity
-  = amount:DecimalLiteral unit:unit 	{return {"amount": amount, "unit": unit}}
-  / amount:DecimalLiteral 				{return {"amount": amount}}
+  = q:DecimalLiteral u:unit 			{return {"quantity": q, "unit": u}}
+  / q:DecimalLiteral 					{return {"quantity": q}}
 
 unit
-  = symbol:[gG][rR][aA][mM][mM]? 		{return 'g';}
-  / symbol:[gG][rR] 					{return 'g';}
-  / symbol:[gG] 						{return 'g';}
-  / symbol:[lL]							{return 'l';}
-  / symbol:[xX] 						{return 'x';}
-  / symbol:[kK][gG] 					{return "kg";}
-  / symbol:[sS][tT][.]? 				{return "x";}
+  = weight
+  / length
+  / volume
+  / number
+  / time
+
+weight
+  = [Gg][Rr][Aa][Mm][Mm]? 		{return 'g';}
+  / [Gg][Rr] 					{return 'g';}
+  / [Gg] 						{return 'g';}
+  / [Ll][Bb]					{return 'lb';}
+  / [Kk][Gg] 					{return "kg";}
+
+/* Guard against min */
+length
+  = [Mm]!([Ii])[Mm]				{return 'mm';}
+  / [Cc][Mm]					{return 'cm';}
+  / [Mm]!([Ii])					{return 'm';}
+
+volume
+  = [Mm][Ll]					{return 'ml';}
+  / [Ll]						{return 'l';}
+  / [Oo][Zz]					{return 'oz';}
+
+time
+  = [Mm][Ii][Nn]				{return 'min';}
+  / [Hh]						{return 'h';}
+
+number
+  = [xX] 						{return 'x';}
+  / [sS][tT][.]? 				{return "x";}
 
 item
   = word:word space:SPACE sub:item ! (SPACE price:price EOF) {return getDescription(globalItem, sub)}
@@ -72,7 +96,7 @@ NonZeroDigit
   = [1-9]
 
 currency
-  = [$€]
+  = [$€£¥]
 
 PLUS_MINUS
   = PLUS
@@ -90,11 +114,18 @@ PERCENT
 SPACE
   = ' '
 
+DOT
+  = '.'
+
+COMMA
+  = ','
+
 ZERO
   = '0'
 
 SEP
-  = '.'
+  = DOT		{return "."}
+  / COMMA 	{return "."}
 
 EOF
   = !.
