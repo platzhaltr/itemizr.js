@@ -1,0 +1,30 @@
+{
+    "name": "itemizr.js",
+    "version": "0.0.1",
+    "description": "itemizr.js is a javascript library to parse line items on receipts in a natural way",
+    "homepage": "https://github.com/platzhaltr/itemizr.js",
+    "author": "Oliver Schrenk <oliver.schrenk@gmail.com>",
+    "keywords": [
+        "date"
+    ],
+    "engines" : { 
+        "node" : ">=0.6.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/platzhaltr/itemizr.js.git"
+    },
+    "bugs": {
+        "url": "https://github.com/platzhaltr/itemizr.js/issues"
+    },
+    "licenses": [
+        {
+            "type": "MIT"
+        }
+    ],
+    "devDependencies": {
+        "uglify-js": "1.2.6",
+        "nodeunit": "0.7.4",
+		"pegjs": "0.6.2"
+    }
+}
