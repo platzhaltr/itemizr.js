@@ -8,7 +8,7 @@
         "date"
     ],
     "engines" : { 
-        "node" : ">=0.6.0"
+        "node": ">= 0.6.6"
     },
     "repository": {
         "type": "git",
@@ -25,6 +25,6 @@
     "devDependencies": {
         "uglify-js": "1.2.6",
         "nodeunit": "0.7.4",
-		"pegjs": "0.6.2"
+		"pegjs": "0.7.0"
     }
 }
