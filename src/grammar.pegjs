@@ -16,13 +16,13 @@ globalItem.description = "";
 }
 
 start
-  = item:quantizedItem SPACE t:tax 		{return merge(item, {"tax": t})}
-  / item:quantizedItem 					{return item;}
-  / item:item SPACE t:tax 				{return merge(item, {"tax": t})}
-  / item:item 							{return item;}
+  = i:quantizedItem SPACE t:tax		{return merge(i, {"tax": t})}
+  / i:quantizedItem 				{return i;}
+  / i:item SPACE t:tax 				{return merge(i, {"tax": t})}
+  / i:item 							{return i;}
 
 quantizedItem
-  = quantity:quantity SPACE item:item 	{return merge (quantity, item);}
+  = q:quantity SPACE i:item 			{return merge (q, i);}
 
 quantity
   = q:DecimalLiteral u:unit 			{return {"quantity": q, "unit": u}}
@@ -64,30 +64,30 @@ number
 item
   = word:word space:SPACE sub:item ! (SPACE price:price EOF) {return getDescription(globalItem, sub)}
   / price:price {return price;}
-  
+
 word
-  = chars:[a-zA-Z0-9()äöüÄÖÜß"%&,.#+-=*]+ 			{globalItem.description = globalItem.description + chars.join("")+ ' '; return ""; }
+  = chars:[a-zA-Z0-9()äöüÄÖÜß"%&,.#+-=*]+ 			{globalItem.description = globalItem.description + chars.join("")+ ' '; return "";}
 
 price
-  = price:DecimalLiteral currency:currency 			{return {"price": price, "currency": currency}}
-  / price:DecimalLiteral  							{ return {"price": price} }
+  = p:DecimalLiteral c:currency						{return {"price": p, "currency": c}}
+  / p:DecimalLiteral  								{return {"price": p}}
 
 tax
-  = pm:PLUS_MINUS? t:DecimalLiteral PERCENT? 		{return parseFloat(pm + t)}
+  = pm:PLUS_MINUS? t:DecimalLiteral PERCENT?		{return parseFloat(pm+t)}
 
 DecimalLiteral
-  = b:DecimalIntegerLiteral s:SEP a:DecimalDigits? 	{return parseFloat(b + s + a); }
+  = b:DecimalIntegerLiteral s:SEP a:DecimalDigits? 	{return parseFloat(b+s+a); }
   / SEP a:DecimalDigits 							{return parseFloat(SEP + a);}
-  / b:DecimalIntegerLiteral 						{return parseFloat(b); }
+  / b:DecimalIntegerLiteral 						{return parseFloat(b);}
 
 DecimalIntegerLiteral
-  = ZERO / digit:NonZeroDigit digits:DecimalDigits?	{ return digit + digits; }
+  = ZERO / d:NonZeroDigit ds:DecimalDigits?			{return d + ds;}
 
 DecimalIntegerLiteral
-  = ZERO / digit:NonZeroDigit digits:DecimalDigits?	{ return digit + digits; }
+  = ZERO / d:NonZeroDigit ds:DecimalDigits?			{return d + ds;}
 
 DecimalDigits
-  = digits:DecimalDigit+ 							{ return digits.join(""); }
+  = d:DecimalDigit+ 								{return d.join("")}
 
 DecimalDigit
   = [0-9]
@@ -106,7 +106,7 @@ PLUS
   = '+' {return ""}
 
 MINUS
-  = '-' 
+  = '-'
 
 PERCENT
   = '%'
