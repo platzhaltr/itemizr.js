@@ -16,17 +16,17 @@ globalItem.description = "";
 }
 
 start
-  = i:quantizedItem SPACE t:tax		{return merge(i, {"tax": t})}
-  / i:quantizedItem 				{return i;}
-  / i:item SPACE t:tax 				{return merge(i, {"tax": t})}
-  / i:item 							{return i;}
+  = i:quantizedItem SPACE t:tax {return merge(i, {"tax": t})}
+  / i:quantizedItem             {return i;}
+  / i:item SPACE t:tax          {return merge(i, {"tax": t})}
+  / i:item                      {return i;}
 
 quantizedItem
-  = q:quantity SPACE i:item 			{return merge (q, i);}
+  = q:quantity SPACE i:item     {return merge (q, i);}
 
 quantity
-  = q:DecimalLiteral u:unit 			{return {"quantity": q, "unit": u}}
-  / q:DecimalLiteral 					{return {"quantity": q}}
+  = q:DecimalLiteral u:unit     {return {"quantity": q, "unit": u}}
+  / q:DecimalLiteral            {return {"quantity": q}}
 
 unit
   = weight
@@ -36,58 +36,58 @@ unit
   / time
 
 weight
-  = [Gg][Rr][Aa][Mm][Mm]? 		{return 'g';}
-  / [Gg][Rr] 					{return 'g';}
-  / [Gg] 						{return 'g';}
-  / [Ll][Bb]					{return 'lb';}
-  / [Kk][Gg] 					{return "kg";}
+  = [Gg][Rr][Aa][Mm][Mm]?       {return 'g';}
+  / [Gg][Rr]                    {return 'g';}
+  / [Gg]                        {return 'g';}
+  / [Ll][Bb]                    {return 'lb';}
+  / [Kk][Gg]                    {return "kg";}
 
 /* Guard against min */
 length
-  = [Mm]!([Ii])[Mm]				{return 'mm';}
-  / [Cc][Mm]					{return 'cm';}
-  / [Mm]!([Ii])					{return 'm';}
+  = [Mm]!([Ii])[Mm]             {return 'mm';}
+  / [Cc][Mm]                    {return 'cm';}
+  / [Mm]!([Ii])                 {return 'm';}
 
 volume
-  = [Mm][Ll]					{return 'ml';}
-  / [Ll]						{return 'l';}
-  / [Oo][Zz]					{return 'oz';}
+  = [Mm][Ll]                    {return 'ml';}
+  / [Ll]                        {return 'l';}
+  / [Oo][Zz]                    {return 'oz';}
 
 time
-  = [Mm][Ii][Nn]				{return 'min';}
-  / [Hh]						{return 'h';}
+  = [Mm][Ii][Nn]                {return 'min';}
+  / [Hh]                        {return 'h';}
 
 number
-  = [xX] 						{return 'x';}
-  / [sS][tT][.]? 				{return "x";}
+  = [xX]                        {return 'x';}
+  / [sS][tT][.]?                {return "x";}
 
 item
   = word:word space:SPACE sub:item ! (SPACE price:price EOF) {return getDescription(globalItem, sub)}
   / price:price {return price;}
 
 word
-  = chars:[a-zA-Z0-9()äöüÄÖÜß"%&,.#+-=*]+ 			{globalItem.description = globalItem.description + chars.join("")+ ' '; return "";}
+  = chars:[a-zA-Z0-9()äöüÄÖÜß"%&,.#+-=*]+       {globalItem.description = globalItem.description + chars.join("")+ ' '; return "";}
 
 price
-  = p:DecimalLiteral c:currency						{return {"price": p, "currency": c}}
-  / p:DecimalLiteral  								{return {"price": p}}
+  = p:DecimalLiteral c:currency                 {return {"price": p, "currency": c}}
+  / p:DecimalLiteral                            {return {"price": p}}
 
 tax
-  = pm:PLUS_MINUS? t:DecimalLiteral PERCENT?		{return parseFloat(pm+t)}
+  = pm:PLUS_MINUS? t:DecimalLiteral PERCENT?    {return parseFloat(pm+t)}
 
 DecimalLiteral
-  = b:DecimalIntegerLiteral s:SEP a:DecimalDigits? 	{return parseFloat(b+s+a); }
-  / SEP a:DecimalDigits 							{return parseFloat(SEP + a);}
-  / b:DecimalIntegerLiteral 						{return parseFloat(b);}
+  = b:DecimalIntegerLiteral s:SEP a:DecimalDigits?  {return parseFloat(b+s+a); }
+  / SEP a:DecimalDigits                             {return parseFloat(SEP + a);}
+  / b:DecimalIntegerLiteral                         {return parseFloat(b);}
 
 DecimalIntegerLiteral
-  = ZERO / d:NonZeroDigit ds:DecimalDigits?			{return d + ds;}
+  = ZERO / d:NonZeroDigit ds:DecimalDigits?     {return d + ds;}
 
 DecimalIntegerLiteral
-  = ZERO / d:NonZeroDigit ds:DecimalDigits?			{return d + ds;}
+  = ZERO / d:NonZeroDigit ds:DecimalDigits?     {return d + ds;}
 
 DecimalDigits
-  = d:DecimalDigit+ 								{return d.join("")}
+  = d:DecimalDigit+                             {return d.join("")}
 
 DecimalDigit
   = [0-9]
@@ -124,8 +124,8 @@ ZERO
   = '0'
 
 SEP
-  = DOT		{return "."}
-  / COMMA 	{return "."}
+  = DOT    {return "."}
+  / COMMA  {return "."}
 
 EOF
   = !.
