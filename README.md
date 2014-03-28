@@ -12,7 +12,7 @@ For example given `2kg Potatoes 7.59€ -7%` you get
        "currency": "€",
 	   "tax": -7
 	}
-	
+
 The tax object gives the tax rate whereas `x`´denotes that tax must be added the price and `-x` denotes that tax is already included in the price.
 
 ## Development ##
@@ -36,11 +36,11 @@ The parser understands statements like these
 	[<quantity>[<unit>]] <description> <price>[<currency>] [<tax>]
 
 - `quantity` Optional. Defaults to Defaults to `defaults.quantity`.
-- `unit` Optional. Depends on `quantity`. Right supported units are `g`, `lb`, `kg`, `m`, `ml`, `oz`, `l`, `x`, `h`, `min` (with x beingplaceholder for number of items). Defaults to `defaults.unit`.
+- `unit` Optional. Depends on `quantity`. Right supported units are `g`, `lb`, `kg`, `m`, `ml`, `oz`, `l`, `h`, `min`, and `x`  (with `x` being a placeholder for number of items). Defaults to `defaults.unit`.
 - `description` Required. Can be any character in `[a-zA-Z0-9()äöüÄÖÜß"%&,.#+-=*\s]`.
-- `price` Required. Decimal seperator can be `.` or `,`. There is no support for a digit group separator (eg no thousands separator).
+- `price` Required. Decimal separator can be `.` or `,`. There is no support for a digit group separator (eg. no thousands separator).
 - `currency` Optional. Can be any character in `[$€£¥]`. Defaults to `defaults.currency`.
-- `tax` Optional. Can be `±x` with `x` being a decimal number (with  `.` or `,` seperator). The idea is that that `+x`´denotes that `x%` of vat must be added to the price and `-x` denotes that `x%` is already included in the price. Defaults to `defaults.tax`.
+- `tax` Optional. Can be `±x` with `x` being a decimal number (with  `.` or `,` separator). The idea is that that `+x`´ denotes that `x%` of vat must be added to the price and `-x` denotes that `x%` is already included in the price. Defaults to `defaults.tax`.
 
 ### Examples ###
 
