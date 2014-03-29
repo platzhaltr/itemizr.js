@@ -24,13 +24,11 @@ description
 
 sentence
   = w:word ! (SPACES p:price) SPACES s:sentence  ! (p:price)  {return w + " " + s}
-  / w:word ! (p:price)                                        {return w}
-
-part
-  = SPACES w:word   {return w}
+  / w:word ! (SPACES p:price)         {return w}
+  / w:word                            {return w}
 
 word
-  = c:[a-zA-Z()äöüÄÖÜß"%&,;.#+-=*]+    {return c.join("")}
+  = c:[a-zA-Z()äöüÄÖÜß"%&,;.#+-=*]+   {return c.join("")}
 
 price
   = p:DecimalLiteral c:currency       {return {"price": p, "currency": c}}
@@ -46,7 +44,6 @@ DecimalLiteral
 
 DecimalIntegerLiteral
   = ZERO / d:NonZeroDigit ds:DecimalDigits?         {return d + ((!ds) ? "" : ds)}
-
 
 DecimalDigits
   = d:DecimalDigit+                                 {return d.join("")}
