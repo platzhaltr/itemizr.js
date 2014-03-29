@@ -4,14 +4,16 @@
 
 For example given `2kg Potatoes 7.59€ -7%` you get
 
-	{
-	   "quantity": 2,
-	   "unit": "kg",
-	   "description": "Potatoes",
-	   "price": 7.59,
-       "currency": "€",
-	   "tax": -7
-	}
+```javascript
+{
+   "quantity": 2,
+   "unit": "kg",
+   "description": "Potatoes",
+   "price": 7.59,
+   "currency": "€",
+   "tax": -7
+}
+```
 
 ## Development ##
 
@@ -23,28 +25,34 @@ You need
 
 To compile and make dist
 
-	git clone git@github.com:platzhaltr/itemizr.git
-	cd itemizr.git
-	make
+```shell
+git clone git@github.com:platzhaltr/itemizr.git
+cd itemizr.git
+make
+```
 
 ## Usage ##
 
-	var core = require('../build/itemizr.core.js');
-	var itemizrDefaults = {
-		"defaults": {
-			"quantity": 1
-			"unit": "x"
-			"currency": "€"
-			"tax": "19"
-		}
-	}
-	var i = new core.Itemizr(itemizrDefaults);
+This is how you would use itemizr:
 
- 	var item1 = i.parse("2kg Potatoes 7.59€")
- 	var item2 = i.parse("1.5L Juice Off-Brand 12.45€")
- 	var item3 = i.parse("200g Peanuts with chocolate 2.45$")
- 	var item4 = i.parse("Bag of Chips 5.34€`")
- 	var item5 = i.parse("Book with included tax 12.3 -7%")
+```javascript
+var core = require('../build/itemizr.core.js');
+var itemizrDefaults = {
+	"defaults": {
+		"quantity": 1
+		"unit": "x"
+		"currency": "€"
+		"tax": "19"
+	}
+}
+var itemizr = new core.Itemizr(itemizrDefaults);
+
+var item1 = itemizr.parse("2kg Potatoes 7.59€")
+var item2 = itemizr.parse("1.5L Juice Off-Brand 12.45€")
+var item3 = itemizr.parse("200g Peanuts with chocolate 2.45$")
+var item4 = itemizr.parse("Bag of Chips 5.34€`")
+var item5 = itemizr.parse("Book with included tax 12.3 -7%")
+```
 
 ### Parser ###
 
@@ -65,22 +73,28 @@ You can supply default values itemizr falls back onto.
 
 You can change the following defaults
 
-	"defaults": {
-		"quantity": 1,
-		"unit": "x",
-		"currency": "€",
-		"tax": "19"
-	}
+```javascript
+"defaults": {
+	"quantity": 1,
+	"unit": "x",
+	"currency": "€",
+	"tax": "19"
+}
+```
 
 Constructor defaults
 
-	var core = require('../build/itemizr.core.js');
-	var i = new core.Itemizr({"defaults": {"quantity": 2, "unit": "kg" }});
+```javascript
+var core = require('../build/itemizr.core.js');
+var i = new core.Itemizr({"defaults": {"quantity": 2, "unit": "kg" }});
+```
 
 Method defaults
 
-	var core = require('../build/itemizr.core.js');
-	var i = new core.Itemizr();
-	i.parse("<input>", {"defaults": {"quantity": 2, "unit": "kg"}}),
+```javascript
+var core = require('../build/itemizr.core.js');
+var i = new core.Itemizr();
+i.parse("<input>", {"defaults": {"quantity": 2, "unit": "kg"}}),
+```
 
 You can combine constructor and method defaults. Method defaults override constructor defaults.
