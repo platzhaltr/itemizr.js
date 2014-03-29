@@ -1,5 +1,5 @@
 { function merge(o1,o2){
-    for (var attrname in o2) { o1[attrname] = o2[attrname]; }
+    for (var attrname in o2) { o1[attrname] = o2[attrname]}
     return o1;
 } }
 
@@ -10,7 +10,7 @@ start
   / i:item                        {return i}
 
 quantizedItem
-  = q:quantity SPACES i:item      {return merge (q, i)}
+  = q:quantity SPACES i:item      {return merge(q, i)}
 
 quantity
   = q:DecimalLiteral u:unit       {return {"quantity": q, "unit": u}}
@@ -30,7 +30,7 @@ part
   = SPACES w:word   {return w}
 
 word
-  = c:[a-zA-Z()äöüÄÖÜß"%&,.#+-=*]+    {return c.join("")}
+  = c:[a-zA-Z()äöüÄÖÜß"%&,;.#+-=*]+    {return c.join("")}
 
 price
   = p:DecimalLiteral c:currency       {return {"price": p, "currency": c}}
