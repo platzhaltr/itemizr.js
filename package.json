@@ -17,11 +17,7 @@
   "bugs": {
     "url": "https://github.com/platzhaltr/itemizr.js/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ],
+  "license": "MIT",
   "devDependencies": {
     "uglify-js": "3.3.11",
     "nodeunit": "0.11.2",
