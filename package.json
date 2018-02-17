@@ -6,25 +6,25 @@
   "author": "Oliver Schrenk <oliver.schrenk@gmail.com>",
   "keywords": [
     "date"
-    ],
-    "engines": {
-      "node": ">= 0.10"
-    },
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/platzhaltr/itemizr.js.git"
-    },
-    "bugs": {
-      "url": "https://github.com/platzhaltr/itemizr.js/issues"
-    },
-    "licenses": [
-      {
-        "type": "MIT"
-      }
-    ],
-    "devDependencies": {
-      "uglify-js": "2.6.0",
-      "nodeunit": "0.8.6",
-      "pegjs": "0.8.0"
+  ],
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/platzhaltr/itemizr.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/platzhaltr/itemizr.js/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
     }
+  ],
+  "devDependencies": {
+    "uglify-js": "3.3.11",
+    "nodeunit": "0.8.6",
+    "pegjs": "0.8.0"
+  }
 }
