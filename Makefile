@@ -48,7 +48,7 @@ mkdirBuild:
 mkdirDist:
 	mkdir -p dist
 compileGrammar:
-	$(PEGJS_BIN) $(SRC_FILE_GRAMMAR) $(BUILD_FILE_PARSER)
+	$(PEGJS_BIN) --output $(BUILD_FILE_PARSER) $(SRC_FILE_GRAMMAR) 
 copyToBuild:
 	cp $(SRC_FILE_CORE) $(BUILD_FILE_CORE)
 test: testParser testCore
